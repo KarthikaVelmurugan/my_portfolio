@@ -173,7 +173,7 @@
                     <div class="box">
                         <i class="fas fa-user-nurse"></i>
                         <div class="text">Save My Nation App</div>
-                        <p> volunteer and people who need help during covid period.</p>
+                        <p> To provide services for volunteer and people who need help during covid period.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -276,23 +276,24 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form action="#">
+                    <form method="post" autocomplete="off" name="google-sheet">
+                    
                         <div class="fields">
                             <div class="field name">
-                                <input type="text" placeholder="Name" required>
+                                <input type="text" placeholder="Name" name="Name" value=""  required>
                             </div>
                             <div class="field email">
-                                <input type="email" placeholder="Email" required>
+                                <input type="email" placeholder="Email" name="Email" value=""  required>
                             </div>
                         </div>
                         <div class="field">
-                            <input type="text" placeholder="Subject" required>
+                            <input type="text" placeholder="Subject" name="Subject" value=""  required>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+                            <textarea cols="30" rows="10" placeholder="Message.." name="Message" value=""  required></textarea>
                         </div>
                         <div class="button">
-                            <button type="submit">Send message</button>
+                            <button type="submit" name="submit" id="submit">Send message</button>
                         </div>
                     </form>
                 </div>
@@ -305,6 +306,20 @@
         <span>Created By <a href="#">KarthikaVel</a> | <span class="far fa-copyright"></span> 2020 All rights reserved.</span>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyegoVO8Ycx5uGaSZxZhgnq7Kc3izIgdCxwHoHfSHZaGWtkkus/exec'
+        const form = document.forms['google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          alert("Loading...")
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks You for messaging!"))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
